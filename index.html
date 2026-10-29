@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swarm OS — WebGPU Ant Colony Optimization Lab</title>
+    <style>*{box-sizing:border-box;margin:0;padding:0}body{color:#f8fafc;background:#090d16;flex-direction:column;height:100vh;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;display:flex;overflow:hidden}header{background:#0f172a;border-bottom:1px solid #1e293b;justify-content:space-between;align-items:center;gap:14px;padding:8px 18px;font-size:13px;display:flex}.title-group{align-items:center;gap:12px;display:flex}.controls-group{flex-wrap:wrap;align-items:center;gap:14px;display:flex}.control-item{background:#1e293b;border-radius:6px;align-items:center;gap:8px;padding:4px 10px;font-size:12px;display:flex}.control-item input[type=range]{accent-color:#38bdf8;cursor:pointer;width:95px}.btn{color:#fff;cursor:pointer;background:#2563eb;border:1px solid #3b82f6;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;transition:background .15s}.btn:hover{background:#1d4ed8}.badge{border-radius:999px;padding:4px 10px;font-size:11px;font-weight:600}.badge-erratic{color:#fecaca;background:#7f1d1d}.badge-connected{color:#bbf7d0;background:#14532d}.badge-pheromone-off{color:#94a3b8;background:#1e293b}.badge-pheromone-on{color:#f5d0fe;background:#701a75}main{flex:1;grid-template-columns:44% 56%;height:calc(100vh - 46px);display:grid}.left-panel{background:#0f172a;border-right:1px solid #1e293b;flex-direction:column;display:flex}.canvas-wrapper{flex:1;min-height:260px;position:relative;overflow:hidden}#brain-canvas{width:100%;height:100%;display:block}.fab-add-block{color:#fff;cursor:pointer;z-index:15;background:#2563eb;border:1px solid #60a5fa;border-radius:10px;justify-content:center;align-items:center;width:38px;height:38px;font-size:22px;font-weight:700;line-height:1;display:flex;position:absolute;top:12px;left:12px;box-shadow:0 6px 16px #00000073}.fab-add-block:hover{background:#1d4ed8}.block-bank-drawer{z-index:14;background:#0f172af5;border:1px solid #334155;border-radius:10px;flex-direction:column;gap:8px;width:270px;padding:10px;display:none;position:absolute;top:58px;bottom:12px;left:12px;overflow-y:auto;box-shadow:0 12px 28px #0000008c}.block-bank-drawer.open{display:flex}.drawer-header{color:#94a3b8;border-bottom:1px solid #1e293b;justify-content:space-between;align-items:center;padding-bottom:6px;font-size:12px;display:flex}.block-card{cursor:grab;-webkit-user-select:none;user-select:none;background:#1e293b;border-left:4px solid #38bdf8;border-radius:7px;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;transition:transform .1s,background .15s;display:flex}.block-card:hover{background:#334155;transform:translate(2px)}.block-card-info{flex-direction:column;gap:2px;display:flex}.block-card-title{color:#f8fafc;font-size:12px;font-weight:600}.block-card-ports{color:#94a3b8;font-size:10px}.btn-help-badge{color:#e2e8f0;cursor:pointer;background:#0f172a;border:1px solid #64748b;border-radius:50%;flex-shrink:0;width:22px;height:22px;font-size:12px;font-weight:700}.btn-help-badge:hover{color:#020617;background:#38bdf8;border-color:#38bdf8}.shader-preview{color:#38bdf8;white-space:pre;background:#020617;border-top:1px solid #1e293b;height:195px;padding:10px 14px;font-family:Cascadia Code,Fira Code,monospace;font-size:11px;line-height:1.45;overflow:auto}#viewport-container{background:#070b14;width:100%;height:100%;position:relative}.legend-overlay{z-index:10;background:#0f172ad9;border:1px solid #1e293b;border-radius:8px;gap:12px;padding:8px 12px;font-size:11px;display:flex;position:absolute;top:12px;right:12px}.legend-dot{border-radius:50%;width:9px;height:9px;margin-right:5px;display:inline-block}.modal-backdrop{z-index:50;background:#020617b8;justify-content:center;align-items:center;display:none;position:fixed;inset:0}.modal-backdrop.open{display:flex}.modal-card{background:#0f172a;border:1px solid #334155;border-radius:12px;flex-direction:column;gap:12px;width:min(460px,92vw);padding:18px 20px;display:flex;box-shadow:0 20px 45px #000000a6}.modal-header{border-bottom:1px solid #1e293b;justify-content:space-between;align-items:center;padding-bottom:8px;display:flex}.modal-section-label{text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin-bottom:3px;font-size:11px}.modal-body-text{color:#e2e8f0;font-size:13px;line-height:1.5}.modal-equation{color:#38bdf8;background:#020617;border:1px solid #1e293b;border-radius:6px;padding:8px 10px;font-family:Cascadia Code,Fira Code,monospace;font-size:12px}.help-card{width:min(640px,94vw);max-height:86vh;overflow-y:auto}.help-list{color:#e2e8f0;margin:0;padding-left:18px;font-size:13px;line-height:1.5}.help-hints{flex-direction:column;gap:8px;margin-bottom:10px;display:flex}.help-hint{background:#020617;border:1px solid #1e293b;border-left:3px solid #38bdf8;border-radius:6px;padding:8px 10px}.help-solution{border-left-color:#f59e0b}#error-banner{color:#fef2f2;z-index:20;background:#7f1d1deb;border:1px solid #ef4444;border-radius:8px;padding:20px;display:none;position:absolute;inset:20px}</style>
+    <script type="module" crossorigin src="./assets/index-CeljjIK3.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CZmxBVrh.css">
+  </head>
+  <body>
+    <header>
+      <div class="title-group">
+        <strong>Swarm OS — ACO Lab</strong>
+        <span id="hypotenuse-label" class="control-item">Hypotenuse: --</span>
+      </div>
+      <div class="controls-group">
+        <div class="control-item">
+          <label for="ant-count-slider">Ants:</label>
+          <input id="ant-count-slider" type="range" min="1" max="500" value="250" />
+          <strong id="ant-count-value">250</strong>
+        </div>
+        <button id="new-map-btn" class="btn" type="button">New Random Map</button>
+        <button id="save-brain-btn" class="btn" type="button">Guardar red</button>
+        <button id="load-brain-btn" class="btn" type="button">Cargar red</button>
+        <input id="load-brain-input" type="file" accept=".json,application/json" hidden />
+        <button id="help-btn" class="btn" type="button">Ayuda</button>
+        <span id="pheromone-badge" class="badge badge-pheromone-off">Pheromones: Hidden</span>
+        <span id="status-badge" class="badge badge-erratic">Brain Disconnected</span>
+      </div>
+    </header>
+    <main>
+      <section class="left-panel">
+        <div class="canvas-wrapper">
+          <button id="toggle-bank-btn" class="fab-add-block" type="button" title="Toggle Block Bank">+</button>
+          <aside id="block-bank-drawer" class="block-bank-drawer">
+            <div class="drawer-header">
+              <strong>Block Bank (Drag or Click)</strong>
+              <span>? = Spec</span>
+            </div>
+            <div id="block-bank-list" style="display: flex; flex-direction: column; gap: 7px"></div>
+          </aside>
+          <canvas id="brain-canvas"></canvas>
+        </div>
+        <div id="wgsl-preview" class="shader-preview"></div>
+      </section>
+      <section id="viewport-container">
+        <div class="legend-overlay">
+          <span><i class="legend-dot" style="background: #f59e0b"></i>Nest / Returning</span>
+          <span><i class="legend-dot" style="background: #22c55e"></i>Food Goal</span>
+          <span><i class="legend-dot" style="background: #38bdf8"></i>Foraging Ant</span>
+          <span><i class="legend-dot" style="background: #64748b"></i>Mountain</span>
+          <span><i class="legend-dot" style="background: #b45309"></i>Wall</span>
+          <span><i class="legend-dot" style="background: #0284c7"></i>Water (Reset)</span>
+        </div>
+        <div id="error-banner"></div>
+      </section>
+    </main>
+
+    <div id="help-modal" class="modal-backdrop">
+      <div class="modal-card help-card">
+        <div class="modal-header">
+          <strong>Ayuda — Swarm OS ACO Lab</strong>
+          <button id="close-help-btn" class="btn" type="button">Cerrar</button>
+        </div>
+        <div id="help-content"></div>
+      </div>
+    </div>
+    <div id="node-spec-modal" class="modal-backdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <strong id="modal-node-title">Especificación Técnica</strong>
+          <button id="close-modal-btn" class="btn" type="button">Cerrar</button>
+        </div>
+        <div>
+          <div class="modal-section-label">En palabras simples</div>
+          <p id="modal-node-plain" class="modal-body-text"></p>
+        </div>
+        <div>
+          <div class="modal-section-label">Definición Operacional</div>
+          <p id="modal-node-summary" class="modal-body-text"></p>
+        </div>
+        <div>
+          <div class="modal-section-label">Expresión Formal</div>
+          <div id="modal-node-equation" class="modal-equation"></div>
+        </div>
+        <div>
+          <div class="modal-section-label">Contrato de Entrada / Salida</div>
+          <p id="modal-node-io" class="modal-body-text"></p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
